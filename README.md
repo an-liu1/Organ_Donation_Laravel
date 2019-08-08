@@ -39,12 +39,23 @@ In order to make the project operate well, there is some software necessarily:
 
 #### Developing environment: windows + apache + mysql + php
 ##### Version requirement:
-      windows：≥ win xp
-  		apache：≥ 2.2
-  		mysql：≥ 5.5
-  		php：≥ 7.0
+     windows：≥ win xp
+  	 apache：≥ 2.2
+     mysql：≥ 5.5
+     php：≥ 7.0
 
-#### Developing Framework: Laravel
+#### Developing Framework: 
+     Laravel
+
+#### Database:
+Import organ_donation.sql to you database, and then change the parameter in the .env file:
+
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=organ_donation
+    DB_USERNAME=root
+    DB_PASSWORD=
 
 #### Developing tool:
     1. Visual Studio Code
