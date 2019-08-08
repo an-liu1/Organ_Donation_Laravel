@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 08, 2019 at 07:08 PM
+-- Generation Time: Aug 08, 2019 at 09:20 PM
 -- Server version: 5.7.24
 -- PHP Version: 5.6.40
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `auth` (
   `pid` tinyint(4) NOT NULL,
   `is_nav` enum('1','2') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `auth`
@@ -45,15 +45,18 @@ CREATE TABLE IF NOT EXISTS `auth` (
 
 INSERT INTO `auth` (`id`, `auth_name`, `controller`, `action`, `pid`, `is_nav`) VALUES
 (1, 'Admin Management', NULL, NULL, 0, '1'),
-(2, 'Redeemed Products', 'ProductController', 'index', 0, '1'),
+(2, 'Redeemed Products', '', '', 0, '1'),
 (3, 'Product inventory', NULL, NULL, 0, '1'),
-(4, 'Donor Form Management', 'FormController', 'index', 0, '1'),
-(5, 'Members Management', 'MemberController', 'index', 0, '1'),
+(4, 'Donor Form Management', '', '', 0, '1'),
+(5, 'Members Management', '', '', 0, '1'),
 (6, 'Donor Form Delete', 'FormController', 'delete', 4, '1'),
 (7, 'Member Add', 'MemberController', 'add', 5, '1'),
 (8, 'Member Edit', 'MemberController', 'edit', 5, '1'),
 (9, 'Member Delete', 'MemberController', 'delete', 5, '1'),
-(10, '123456', 'ManagerController', 'indexdsdsd', 3, '1');
+(10, '123456', 'ProductController', 'indexdsdsd', 3, '1'),
+(11, 'Redeemed Products List', 'ProductController', 'index', 2, '1'),
+(12, 'Donor Form List', 'FormController', 'index', 4, '1'),
+(13, 'Member List', 'MemberController', 'index', 5, '1');
 
 -- --------------------------------------------------------
 
@@ -218,15 +221,15 @@ CREATE TABLE IF NOT EXISTS `manager` (
 
 INSERT INTO `manager` (`id`, `username`, `password`, `gender`, `mobile`, `email`, `role_id`, `created_at`, `updated_at`, `remember_token`) VALUES
 (1, 'braun.ebba', '$2y$10$qAFc4SY9e7.295QzXIxWeucNBh.iIMuiB7pNp.dikt4LDaBYmSEoK', '1', '454-757-911', 'pgrady@gmail.com', 5, '2019-08-06 23:45:20', NULL, 'QDCPI9NxD6DxX0ELAKpG60juj649PcTmmZOGuPFaCRER0s7XV4Ak3vjXIJOE'),
-(2, 'an', '$2y$10$7vhUIENLLhomO7x79xkQruPRr/X1ri8RFxtWqDWWbsPMCMlD6tFDe', '3', '1-637-413-9', 'ahmed29@gmail.com', 1, '2019-08-06 23:45:20', NULL, 'TW00dO0wDNjnKINoUCvEtBs91M0okKMtQAlbkehjAEnc4vKCHfXc9AL0qbyN'),
+(2, 'an', '$2y$10$7vhUIENLLhomO7x79xkQruPRr/X1ri8RFxtWqDWWbsPMCMlD6tFDe', '3', '1-637-413-9', 'ahmed29@gmail.com', 1, '2019-08-06 23:45:20', NULL, 'UGmx7x5CgE6ARiYNlY1KRa5iG8bA4sNew08FlSHtyPE5BVdR5Gp7woGrBNpi'),
 (3, 'aniyah.metz', '$2y$10$cfiFVhpgG9d/AEu3fNAtKOy1U2X9WUhUaJoCF8rEm9hXy6S/T8UuK', '3', '1-753-378-7', 'curt.blanda@gmail.com', 6, '2019-08-06 23:45:20', NULL, NULL),
-(4, 'joyce90', '$2y$10$7JmRbuTdJnm2d6rxYhitY.hogjOqAitd7EFMdIb2ICdhfyVmyBkHq', '1', '860.996.880', 'gaylord.madeline@gmail.com', 6, '2019-08-06 23:45:20', NULL, NULL),
+(4, 'joyce90', '$2y$10$7JmRbuTdJnm2d6rxYhitY.hogjOqAitd7EFMdIb2ICdhfyVmyBkHq', '1', '860.996.880', 'gaylord.madeline@gmail.com', 6, '2019-08-06 23:45:20', NULL, 'mNzR4u4lQzEF2cPxSNc08tlyaJtkUGWZqbEBaJ6jaOyxwtLI82BH20UmOPlw'),
 (5, 'sporer.natalia', '$2y$10$IDzeVBjZENeVlDCfrIJvQ.zWhdAXHi7tsqQXc3aehwTiMNk35TsYy', '2', '1-281-981-3', 'aufderhar.rashad@gmail.com', 1, '2019-08-06 23:45:20', NULL, NULL),
 (6, 'nader.marian', '$2y$10$LMN3xpZaySycaztz95Zvoez93wnoPJoima4eOeIPTo4iKzazv7oSa', '2', '713-869-516', 'carolanne.boehm@hotmail.com', 6, '2019-08-06 23:45:20', NULL, NULL),
 (7, 'jess.murphy', '$2y$10$VayrY89Qz0rEKlsjdEN01u6b8LTqP9FyuyJH.jAcb9hC5pkhFmd9.', '1', '960-889-397', 'dudley.conroy@hotmail.com', 6, '2019-08-06 23:45:21', NULL, NULL),
 (8, 'davin62', '$2y$10$IxF2DVUYhpqDFmp3Jt5Bc.5pOAQPOFwn3M/5aD6Dirv.aDixDJk42', '1', '1-395-586-5', 'amir37@gmail.com', 5, '2019-08-06 23:45:21', NULL, NULL),
 (9, 'whirthe', '$2y$10$QZ9sCXiYfs2po7E5kRP8hOaasaUEiGksqEyYr3/7B/exlE8VxO5zW', '1', '1-803-812-6', 'lynch.claud@goodwin.com', 5, '2019-08-06 23:45:21', NULL, NULL),
-(10, 'sipes.carol', '$2y$10$xKzXjpZrjUxEkqTyUejbw.hn2Yxw.OsxayWw.YLqB8QOLjkm9dUu6', '2', '+1.978.474.', 'taylor.cormier@hotmail.com', 3, '2019-08-06 23:45:21', NULL, NULL),
+(10, 'sipes.carol', '$2y$10$xKzXjpZrjUxEkqTyUejbw.hn2Yxw.OsxayWw.YLqB8QOLjkm9dUu6', '2', '+1.978.474.', 'taylor.cormier@hotmail.com', 3, '2019-08-06 23:45:21', NULL, 'B4eBkH0pHT51gT2av1kDqMYJVre1mZn91nTV9BYmveHeeTbmAwnuZe0RF5gy'),
 (11, 'hackett.maryam', '$2y$10$AQxn0CWcCL6jLkZni5m.g.9bTRZ3HnYCA5kFgKErWsigZe8RBPH2.', '1', '936-925-381', 'jackson.nienow@hotmail.com', 4, '2019-08-06 23:45:21', NULL, NULL),
 (12, 'cohara', '$2y$10$b/9Z3/rVMgo1KfsRU1mB8.ofSu4XJwBAR.EC1tqO9IXSyjYHXBtz2', '2', '+1-729-676-', 'klarson@yahoo.com', 3, '2019-08-06 23:45:21', NULL, NULL),
 (13, 'jhyatt', '$2y$10$9vQKY1DeCWBP.d2ZwfesCuYL6uc4ogU3Ptc10K2QyVhe1Sk/HU6Ba', '1', '+1.594.546.', 'cielo.rice@lemke.com', 4, '2019-08-06 23:45:21', NULL, NULL),
@@ -327,9 +330,9 @@ CREATE TABLE IF NOT EXISTS `role` (
 
 INSERT INTO `role` (`id`, `role_name`, `auth_ids`, `auth_ac`) VALUES
 (1, 'CEO', '', ''),
-(2, 'Human Resource', '1,5,7,8,9', 'membercontroller@add,membercontroller@edit,membercontroller@delete'),
-(3, 'Product Manager', '2,3,10', 'managercontroller@indexdsdsd'),
-(4, 'Officer', '4,6', 'formcontroller@delete'),
+(2, 'Human Resource', '1,5,7,8,9,13', 'membercontroller@add,membercontroller@edit,membercontroller@delete,membercontroller@index'),
+(3, 'Product Manager', '2,11,3,10', 'productcontroller@indexdsdsd,productcontroller@index'),
+(4, 'Officer', '4,6,12', 'formcontroller@delete,formcontroller@index'),
 (5, 'staff', '', ''),
 (6, 'Guest', '', '');
 
@@ -363,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `name`, `tel`, `email`, `points`, `last_login_ip`, `last_login_time`, `donor_form`, `created_at`, `updated_at`, `remember_token`, `status`) VALUES
-(1, 'admin', '$2y$10$mSlwSPHFTQnwa7OjDF5QTOFfrJcrjbOJtuAgAJdpRjGvt/mNLdYA6', 'andy', '5196974518', 'andyvviiar@gmail.com', 1230546, '127.0.0.1', '2019-08-06 18:26:44', './admin/upload_donorform/9b02c93267cb459950db74eaa', '2007-01-24 08:02:43', '2019-08-07 02:03:04', 'JcLVGXyeO63Ipe34koRN56lR85jDao3gHktankJC153RNFFLZGBxDquLBSSu', '2'),
+(1, 'admin', '$2y$10$mSlwSPHFTQnwa7OjDF5QTOFfrJcrjbOJtuAgAJdpRjGvt/mNLdYA6', 'andy', '5196974518', 'andyvviiar@gmail.com', 1230566, '127.0.0.1', '2019-08-08 20:06:02', './admin/upload_donorform/9b02c93267cb459950db74eaa', '2007-01-24 08:02:43', '2019-08-09 00:06:06', 'JcLVGXyeO63Ipe34koRN56lR85jDao3gHktankJC153RNFFLZGBxDquLBSSu', '2'),
 (2, 'murphy.deron', '$2y$10$qyl86e8q4WIJYDM/zOdshOnlQWTW0X4jarm2UHLyvGlm9recB.gDi', 'Pearl', '866.701.3164', 'rschmeler@hotmail.com', 12171, '10.19.224.121', '2004-08-04 04:50:21', NULL, '2018-09-18 22:25:46', NULL, NULL, '2'),
 (3, 'alicia64', '$2y$10$ZCNZpLJCZeoOZxZ4lv.PgO7V7bU/DkOV0zr64I6cF.82lIU15f20O', 'Cleveland', '844-846-9955', 'rlabadie@jenkins.com', 15375, '10.81.175.15', '2006-06-14 15:06:07', NULL, '2010-10-15 23:30:46', NULL, NULL, '1'),
 (4, 'carson76', '$2y$10$I77XTnDGNdGNrQtucu7EluuAhy4uYgECZIho38kdWMDB3wlLVpzFu', 'Gideon', '1-800-648-1912', 'jenifer57@predovic.com', 14547, '192.168.221.214', '2010-05-01 14:55:00', NULL, '1986-06-20 23:51:11', NULL, NULL, '2'),
