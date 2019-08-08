@@ -69,24 +69,29 @@ class PublicController extends Controller
                 'email'    => 'required|email',
                 'check'    => 'required',
             ]);
-
-            $data = Input::except(['_token','saveForm','check']);
-            $data['password'] = bcrypt(Input::get('password'));
-            $data['points'] = '300';
-            $data['last_login_ip'] = $request->ip();
-            $data['created_at'] = date('Y-m-d H:i:s', time());
-            // dd($data);
-            if(User::insert($data)){
-                return response()->json(array(
-                    'status' => 1,
-                    'msg' => 'ok',		                        	            
-                ));
-            }else{
-                return response()->json(array(
-                    'status' => 2,
-                    'msg' => 'fail',		                        	            
-                ));
+            if(!User::where('username',Input::get('username')) -> exists()){
+                $data = Input::except(['_token','saveForm','check']);
+                $data['password'] = bcrypt(Input::get('password'));
+                $data['points'] = '300';
+                $data['last_login_ip'] = $request->ip();
+                $data['created_at'] = date('Y-m-d H:i:s', time());
+                // dd($data);
+                if(User::insert($data)){
+                    return response()->json(array(
+                        'status' => 1,
+                        'msg' => 'ok',		                        	            
+                    ));
+                }else{
+                    return response()->json(array(
+                        'status' => 2,
+                        'msg' => 'fail',		                        	            
+                    ));
+                }
             }
+            return response()->json(array(
+                'status' => 3,
+                'msg' => 'fail',		                        	            
+            ));  
        }else{
            return view('admin/public/signup');
        }

@@ -50,6 +50,11 @@ return [
             'driver' => 'session',
             'provider' => 'user',
         ],
+
+        'superadmin' => [
+            'driver' => 'session',
+            'provider' => 'manager',
+        ],
     ],
 
     /*
@@ -80,6 +85,10 @@ return [
             'model' => App\admin\User::class,
         ],
 
+        'manager' => [
+            'driver' => 'eloquent',
+            'model' => App\superadmin\Manager::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

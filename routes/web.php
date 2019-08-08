@@ -36,3 +36,35 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
     Route::any('donor/submitForm', 'admin\DonorController@submitForm');
 
 });
+
+Route::group(['prefix' => 'superadmin'], function(){
+    Route::get('public/login', 'superadmin\IndexController@login') -> name('login');
+    Route::any('public/check', 'superadmin\IndexController@check');
+    Route::get('public/logout', 'superadmin\IndexController@logout');
+});
+
+Route::group(['prefix' => 'superadmin', 'middleware' => ['auth:superadmin','checkrbac']], function(){
+    Route::get('index/index', 'superadmin\IndexController@index');
+
+
+    Route::get('form/index', 'superadmin\FormController@index');
+    Route::any('form/delete/{id}', 'superadmin\FormController@delete');
+
+
+    Route::get('product/index', 'superadmin\ProductController@index');
+
+    Route::get('member/index', 'superadmin\MemberController@index');
+    Route::any('member/add', 'superadmin\MemberController@add');
+    Route::any('member/edit/{id}', 'superadmin\MemberController@edit');
+    Route::any('member/delete/{id}', 'superadmin\MemberController@delete');
+
+
+    Route::get('role/index', 'superadmin\RoleController@index');
+    Route::any('role/assign', 'superadmin\RoleController@assign');
+
+    Route::get('auth/index', 'superadmin\AuthController@index');
+    Route::any('auth/add', 'superadmin\AuthController@add');
+
+    Route::get('manager/index', 'superadmin\ManagerController@index');
+    
+});

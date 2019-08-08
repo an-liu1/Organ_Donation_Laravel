@@ -189,8 +189,10 @@
                     layer.alert('Congratulation!!Successfully registered and you get 300 ponits!!!',{title:'Successfully Registered',icon: 1},function(){
                         window.location.href="/admin/public/login";
                     });
-                }else{
+                }else if(data == 2){
                     layer.alert('Hummmm, something worng! Try again please!',{title:'Something Worng',icon: 5});
+                }else{
+                    layer.msg('The account has already existed. Try again!', { icon: 2, time: 2000 });
                 }
             },
         });
