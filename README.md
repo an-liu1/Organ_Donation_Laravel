@@ -8,7 +8,7 @@ Today, in Ontario, there are over 1,500 people waiting for a lifesaving organ tr
 ![image](https://github.com/an-liu1/organ_donation/raw/master/public/Diagram.png)
 
 
-This image shows the main structure of this project!
+This image shows the main structure of this project! This project is divided into two sections facing to users(home, admin) and administrators(super admin) respectively!
 
 ## Getting Started
 
