@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\admin\User;
 use Input;
+use Excel;
+use Storage;
 
 class MemberController extends Controller
 {
@@ -65,6 +67,84 @@ class MemberController extends Controller
                 'status' => 2,
                 'msg' => 'fail',		                        	            
             ));
+        }
+    }
+
+    public function export(){
+        $cellData = [
+            ['id','username','name','points','tel','email','register time', 'last login time','last login ip'],
+        ];
+        $data = User::all();
+        foreach($data as $key => $value){
+            $cellData[] = [
+                $value -> id,
+                $value -> username,
+                $value -> name,
+                $value -> points,
+                $value -> tel,
+                $value -> email,
+                $value -> created_at,
+                $value -> last_login_time,
+                $value -> last_login_ip,    
+            ];
+        }
+
+        Excel::create('User List',function($excel) use ($cellData){
+            $excel -> sheet('user list', function($sheet) use($cellData){
+                $sheet->rows($cellData);
+            });
+        })->export('xls'); 
+    }
+
+    public function webuploader(Request $request){
+    	if($request -> hasFile('file') && $request -> file('file') -> isValid()){
+    		$filename = sha1(time() . $request -> file('file') -> getClientOriginalName()) . '.' .  $request -> file('file') -> getClientOriginalExtension();
+    		Storage::disk('public') -> put($filename, file_get_contents($request -> file('file') -> path()));
+    		$result = [
+    			'errCode'		=>		'0',
+    			'errMsg'		=>		'',
+    			'succMsg'		=>		'Successfully uiploaded file！',
+    			'path'			=>		'/storage/' . $filename,
+    		];
+    	}else{
+    		$result = [
+    			'errCode'		=>		'000001',
+    			'errMsg'		=>		$request -> file('file') -> getErrorMessage()
+    		];
+    	}
+    	return response() -> json($result);
+    }
+
+    public function import(){
+        if(Input::method() == 'POST'){
+            $filePath = '.' . Input::get('excelpath');
+            Excel::load($filePath,function($reader){
+                $data = $reader -> getSheet(0) -> toArray();
+                // print_r($data);
+                $temp = [];
+		        foreach ($data as $key => $value) {
+		        	if($key == '0'){
+		        		continue;
+		        	}
+		        	$temp[] = [
+		        		'username'		  => $value[1],
+		        		'name'		      => $value[2],
+		        		'points'		  => $value[3],
+		        		'tel'		      => $value[4],
+		        		'email'		      => $value[5],
+                        'created_at'	  => date('Y-m-d H:i:s'),
+                        'last_login_time' => $value[7],
+                        'last_login_ip'   => $value[8]
+		        	];
+		        	
+                }
+                print_r($temp);
+                $result = User::insert($temp);
+                echo $result? '1':'0';
+            });
+            
+        }else{
+            return view('superadmin\member\import');
         }
     }
 }

@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -9,19 +8,11 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="Bookmark" href="/favicon.ico">
     <link rel="Shortcut Icon" href="/favicon.ico" />
-    <!--[if lt IE 9]>
-<script type="text/javascript" src="/superadmin/lib/html5shiv.js"></script>
-<script type="text/javascript" src="/superadmin/lib/respond.min.js"></script>
-<![endif]-->
     <link rel="stylesheet" type="text/css" href="/superadmin/static/h-ui/css/H-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="/superadmin/static/h-ui.admin/css/H-ui.admin.css" />
     <link rel="stylesheet" type="text/css" href="/superadmin/lib/Hui-iconfont/1.0.8/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="/superadmin/static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="/superadmin/static/h-ui.admin/css/style.css" />
-    <!--[if IE 6]>
-<script type="text/javascript" src="/superadmin/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
-<![endif]-->
     <title>Donor Form</title>
 </head>
 
@@ -60,52 +51,29 @@
                     <td>{{$val -> name}}</td>
                     <td>{{$val -> donor_form}}</td>
                     <td class="td-manage">
-                         {{-- <a title="编辑" href="javascript:;" onclick="admin_edit('eidt','admin-add.html','1','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> --}}
-                          <a title="delete" href="javascript:;" onclick="admin_del(this,{{$val -> id}})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                        <a title="delete" href="javascript:;" onclick="admin_del(this,{{$val -> id}})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-    <!--_footer 作为公共模版分离出去-->
     <script type="text/javascript" src="/superadmin/lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="/superadmin/lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="/superadmin/static/h-ui/js/H-ui.min.js"></script>
     <script type="text/javascript" src="/superadmin/static/h-ui.admin/js/H-ui.admin.js"></script>
-    <!--/_footer 作为公共模版分离出去-->
-    <!--请在下方写此页面业务相关的脚本-->
     <script type="text/javascript" src="/superadmin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
-    {{-- <script type="text/javascript" src="/superadmin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> --}}
     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.0/css/jquery.dataTables.css">
- 
-    <!-- jQuery -->
-    {{-- <script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script> --}}
-     
-    <!-- DataTables -->
     <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="/superadmin/lib/laypage/1.2/laypage.js"></script>
     <script type="text/javascript">
-    //实例化datatables插件
     $('table').dataTable({
-    	//禁用掉第一列的排序
     	"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 0 ] }],
-    	//默认在初始化的时候按照哪一列进行排序
     	"aaSorting": [[ 1, "asc" ]],
     });
 
-    /*
-    	参数解释：
-    	title	标题
-    	url		请求的url
-    	id		需要操作的数据id
-    	w		弹出层宽度（缺省调默认值）
-    	h		弹出层高度（缺省调默认值）
-    */
-    /*专业-增加*/
     function admin_add(title, url, w, h) {
         layer_show(title, url, w, h);
     }
-    /*专业-删除*/
     function admin_del(obj, id) {
         layer.confirm('Are u sure to delete the donor form？', {btn: ['Yes','No']}, function(index) {
             $.ajax({
@@ -124,35 +92,6 @@
                     console.log(data.msg);
                 },
             });
-        });
-    }
-
-    /*专业-编辑*/
-    function admin_edit(title, url, id, w, h) {
-        layer_show(title, url, w, h);
-    }
-    /*专业-停用*/
-    function admin_stop(obj, id) {
-        layer.confirm('确认要停用吗？', function(index) {
-            //此处请求后台程序，下方是成功后的前台处理……
-
-            $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_start(this,id)" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>');
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">已禁用</span>');
-            $(obj).remove();
-            layer.msg('已停用!', { icon: 5, time: 1000 });
-        });
-    }
-
-    /*专业-启用*/
-    function admin_start(obj, id) {
-        layer.confirm('确认要启用吗？', function(index) {
-            //此处请求后台程序，下方是成功后的前台处理……
-
-
-            $(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_stop(this,id)" href="javascript:;" title="停用" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a>');
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
-            $(obj).remove();
-            layer.msg('已启用!', { icon: 6, time: 1000 });
         });
     }
     </script>

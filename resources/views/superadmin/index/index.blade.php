@@ -8,19 +8,11 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <link rel="Bookmark" href="/favicon.ico" >
 <link rel="Shortcut Icon" href="/favicon.ico" />
-<!--[if lt IE 9]>
-<script type="text/javascript" src="/superadmin/lib/html5shiv.js"></script>
-<script type="text/javascript" src="/superadmin/lib/respond.min.js"></script>
-<![endif]-->
 <link rel="stylesheet" type="text/css" href="/superadmin/static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="/superadmin/static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css" href="/superadmin/lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css" href="/superadmin/static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="/superadmin/static/h-ui.admin/css/style.css" />
-<!--[if IE 6]>
-<script type="text/javascript" src="/superadmin/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
-<![endif]-->
 <title>Organ Donation Superadmin</title>
 </head>
 <body>
@@ -37,7 +29,7 @@
 					<a href="#" class="dropDown_A">{{Auth::guard('superadmin') -> User() -> username}}<i class="Hui-iconfont">&#xe6d5;</i></a>
 					<ul class="dropDown-menu menu radius box-shadow">
 						<li><a href="javascript:;" onClick="myselfinfo()">Your Profile</a></li>
-						<li><a href="#">Switch Account</a></li>
+						<li><a href="/superadmin/public/logout"">Switch Account</a></li>
 						<li><a href="/superadmin/public/logout">Log Out</a></li>
 				</ul>
 			</li>
@@ -101,7 +93,7 @@
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
 				<li class="active">
-					<span title="My Panel" data-href="/superadmin/index/welcome">My Panel</span>
+					<span title="My Panel" data-href="/superadmin/member/index">My Panel</span>
 					<em></em></li>
 		</ul>
 	</div>
@@ -110,7 +102,7 @@
 	<div id="iframe_box" class="Hui-article">
 		<div class="show_iframe">
 			<div style="display:none" class="loading"></div>
-			<iframe scrolling="yes" frameborder="0" src="#"></iframe>
+			<iframe scrolling="yes" frameborder="0" src="/superadmin/member/index"></iframe>
 	</div>
 </div>
 </section>
@@ -121,76 +113,10 @@
 		<li id="closeall">closeall </li>
 </ul>
 </div>
-<!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="/superadmin/lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="/superadmin/lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="/superadmin/static/h-ui/js/H-ui.min.js"></script>
-<script type="text/javascript" src="/superadmin/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
-
-<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/superadmin/static/h-ui.admin/js/H-ui.admin.js"></script>
 <script type="text/javascript" src="/superadmin/lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
-<script type="text/javascript">
-$(function(){
-	/*$("#min_title_list li").contextMenu('Huiadminmenu', {
-		bindings: {
-			'closethis': function(t) {
-				console.log(t);
-				if(t.find("i")){
-					t.find("i").trigger("click");
-				}		
-			},
-			'closeall': function(t) {
-				alert('Trigger was '+t.id+'\nAction was Email');
-			},
-		}
-	});*/
-});
-/*个人信息*/
-function myselfinfo(){
-	layer.open({
-		type: 1,
-		area: ['300px','200px'],
-		fix: false, //不固定
-		maxmin: true,
-		shade:0.4,
-		title: '查看信息',
-		content: '<div>管理员信息</div>'
-	});
-}
-
-/*资讯-添加*/
-function article_add(title,url){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-/*图片-添加*/
-function picture_add(title,url){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-/*产品-添加*/
-function product_add(title,url){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-/*用户-添加*/
-function member_add(title,url,w,h){
-	layer_show(title,url,w,h);
-}
-
-
-</script> 
 </body>
 </html>

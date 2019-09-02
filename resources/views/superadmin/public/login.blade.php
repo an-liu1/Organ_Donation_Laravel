@@ -78,16 +78,13 @@
         });
 
         @if (count($errors) > 0)
-            //以JavaScript弹窗形式输出错误的内容
             var allError = '';
             @foreach ($errors -> all() as $error)
                allError += "{{$error}}<br/>"; 
             @endforeach
-            //输出错误信息
             layer.alert(allError,{title:'Wrong Tips',icon: 5});
         @endif
     </script>
 </body>
-<!-- //Body -->
 
 </html>

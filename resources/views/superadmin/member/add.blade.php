@@ -1,4 +1,3 @@
-<!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
 <html>
 
@@ -10,26 +9,12 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="Bookmark" href="/favicon.ico">
     <link rel="Shortcut Icon" href="/favicon.ico" />
-    <!--[if lt IE 9]>
-<script type="text/javascript" src="/superadmin/lib/html5shiv.js"></script>
-<script type="text/javascript" src="/superadmin/lib/respond.min.js"></script>
-<![endif]-->
     <link rel="stylesheet" type="text/css" href="/superadmin/static/h-ui/css/H-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="/superadmin/static/h-ui.admin/css/H-ui.admin.css" />
     <link rel="stylesheet" type="text/css" href="/superadmin/lib/Hui-iconfont/1.0.8/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="/superadmin/static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="/superadmin/static/h-ui.admin/css/style.css" />
-    <!-- 引入webuploader的需要css文件 -->
-    {{-- <link rel="stylesheet" type="text/css" href="/statics/webuploader-0.1.5/webuploader.css"> --}}
-
-    <!--[if IE 6]>
-<script type="text/javascript" src="/superadmin/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
-<![endif]-->
-    <!--/meta 作为公共模版分离出去-->
-    <title>添加用户 - H-ui.admin v3.1</title>
-    <meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-    <meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+    <title>Add User</title>
 </head>
 
 <body>
@@ -85,13 +70,8 @@
     <script type="text/javascript" src="/superadmin/lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="/superadmin/static/h-ui/js/H-ui.min.js"></script>
     <script type="text/javascript" src="/superadmin/static/h-ui.admin/js/H-ui.admin.js"></script>
-    {{-- <script type="text/javascript" src="/superadmin/lib/My97DatePicker/4.8/WdatePicker.js"></script> --}}
     <script type="text/javascript" src="/superadmin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
     <script type="text/javascript" src="/superadmin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
-    {{-- <script type="text/javascript" src="/superadmin/lib/jquery.validation/1.14.0/messages_zh.js"></script> --}}
-
-    {{-- <script type="text/javascript" src="/statics/webuploader-0.1.5/webuploader.js"></script> --}}
-    {{-- <script type="text/javascript" src="/statics/avatar.js"></script> --}}
     <script type="text/javascript">
     $(function(){
         $('.skin-minimal input').iCheck({
@@ -134,7 +114,6 @@
                     type: 'post',
                     url: "/superadmin/member/add",
                     success: function(data) {
-                        //判断添加结果
                         if(data == 1){
                         	layer.msg('Successfully adding an account!', { icon: 1, time: 2000 },function(){
 	                        	var index = parent.layer.getFrameIndex(window.name);

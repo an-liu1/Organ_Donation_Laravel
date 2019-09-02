@@ -57,7 +57,9 @@ Route::group(['prefix' => 'superadmin', 'middleware' => ['auth:superadmin','chec
     Route::any('member/add', 'superadmin\MemberController@add');
     Route::any('member/edit/{id}', 'superadmin\MemberController@edit');
     Route::any('member/delete/{id}', 'superadmin\MemberController@delete');
-
+    Route::any('member/export', 'superadmin\MemberController@export');
+    Route::any('member/import', 'superadmin\MemberController@import');
+    Route::any('member/webuploader', 'superadmin\MemberController@webuploader');
 
     Route::get('role/index', 'superadmin\RoleController@index');
     Route::any('role/assign', 'superadmin\RoleController@assign');
@@ -66,5 +68,6 @@ Route::group(['prefix' => 'superadmin', 'middleware' => ['auth:superadmin','chec
     Route::any('auth/add', 'superadmin\AuthController@add');
 
     Route::get('manager/index', 'superadmin\ManagerController@index');
+    Route::get('manager/export', 'superadmin\ManagerController@export');
     
 });
